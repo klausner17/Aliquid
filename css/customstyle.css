@@ -12,4 +12,20 @@
 .center-div{
 	margin:5% auto;
 	width: 60%
+}
+
+.menu-lateral{
+	color: rgba(255,0,0,1);
+	font-size: 24px;
+	background-color:rgba(100,100,100,0.5);
+	height:95%;
+	margin-top:15px
+}	
+
+.conteudo{
+	color: rgba(255,0,0,1);
+	font-size: 24px;
+	background-color:rgba(200,200,200,0.5);
+	height:95%;
+	margin-top:15px
 }	
