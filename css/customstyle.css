@@ -1,0 +1,15 @@
+.medium{
+	font-size:26px;
+}
+.min{
+	font-size:20px;
+	height:32px;
+}
+.back-container{
+	border-radius:15px;
+	margin-top: 5%;
+}
+.center-div{
+	margin:5% auto;
+	width: 60%
+}	
