@@ -12,7 +12,13 @@ function login($login = "", $senha = ""){
 		}
 		else{
 			setcookie("login_aliquid", $login);
-			header("Location: ../aliquid.php");
+			header("Location: ../novarnc.php");
 		}
 	}
+}
+
+function cadastrar_usuario($nome="", $sobrenome="",$login="", $senha="", $responsavel="" ){
+	include("conecta.php");
+	$query = "INSERT INTO usuario (id, login, nome, sobrenome, senha, responsavel)VALUES (DEFAULT, '{$login}', '{$nome}', '{$sobrenome}', '{$senha}', {$responsavel});";
+	mysqli_query($conexao, $query);
 }
