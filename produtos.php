@@ -59,7 +59,7 @@
 		<?php
 			if (isset($_GET['erro'])){
 				if ($_GET['erro'] == "true"){
-					echo "<script>alert('Erro ao cadastrar usuário.')</script>";	
+					echo "<script>alert('Erro ao cadastrar produto.')</script>";	
 				}
 			}
 		?>

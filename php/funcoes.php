@@ -3,15 +3,16 @@ function login($login = "", $senha = ""){
 	include("conecta.php");
 	$query = "SELECT * FROM usuario WHERE login LIKE '{$login}'";
 	$result = mysqli_query($conexao, $query);
-	if (($nro_retorno = mysqli_num_rows($result)) == 0){
+	$row = mysqli_fetch_assoc($result);
+	if ($row == null){
 		header("Location: ../index.php?erro=true");
 	}
 	else{
-		if (mysqli_fetch_array($result)['senha'] != $senha){
+		if ($row['senha'] != $senha){
 			header("Location: ../index.php?erro=true");
 		}
 		else{
-			setcookie("login_aliquid", $login);
+			setcookie("aliquid_user",$row['id']);
 			header("Location: ../novarnc.php");
 		}
 	}
@@ -54,5 +55,25 @@ function cadastrar_produto($codigo="", $descricao="", $custo="", $tipo=""){
 		header("Location: ../produtos.php?erro=false");
 	}else{
 		header("Location: ../produtos.php?erro=true");
+	}
+}
+
+function cadastrar_rnc($usuario="", $peca="", $lote="", $qtde="", $ocorrido="", $acao="", $responsavel=""){
+	include("conecta.php");
+	$query = "INSERT INTO rnc (id, id_usuario, id_peca, id_lote, quantidade, ocorrido, acao_imediata, responsavel) VALUES (DEFAULT, {$usuario}, {$peca}, {$lote}, {$qtde}, '{$ocorrido}', '{$acao}', {$responsavel});";
+	if (mysqli_query($conexao, $query) == 1){
+		header("Location: ../novarnc.php?erro=false");
+	}else{
+		header("Location: ../novarnc.php?erro=true");
+	}
+}
+
+function cadastrar_rrc($usuario, $produto, $cliente, $serial, $ocorrido, $acao, $responsavel){
+	include("conecta.php");
+	$query = "INSERT INTO rrc (id, id_usuario, id_produto, id_cliente, serial, ocorrido, acao, responsavel) VALUES (DEFAULT, {$usuario}, {$produto}, {$cliente}, '{$serial}', '{$ocorrido}', '{$acao}', {$responsavel});";
+	if (mysqli_query($conexao, $query) == 1){
+		header("Location: ../novarrc.php?erro=false");
+	}else{
+		header("Location: ../novarrc.php?erro=true");
 	}
 }
