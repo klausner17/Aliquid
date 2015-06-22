@@ -77,3 +77,89 @@ function cadastrar_rrc($usuario, $produto, $cliente, $serial, $ocorrido, $acao, 
 		header("Location: ../novarrc.php?erro=true");
 	}
 }
+
+function consultar_rnc(){
+	include ("conecta.php");
+	$query = "SELECT reg.id, us.nome, pe.descricao, lo.descricao, re.nome
+				FROM rnc reg, usuario us, produto pe, lote lo, usuario re
+				WHERE 
+						reg.id_usuario =  us.id 
+					and	reg.id_peca = pe.id
+					and	reg.id_lote = lo.id
+					and reg.responsavel = re.id
+				ORDER BY id;";
+	$result = mysqli_query($conexao, $query);
+	?>
+	<table class="table">
+		<tr>
+			<td><b>Id</b></td>
+			<td><b>Criador</b></td>
+			<td><b>Peça</b></td>
+			<td><b>Lote</b></td>
+			<td><b>Responsavel</b></td>
+		</tr>
+		<tr>
+	<?php
+	while($row = mysqli_fetch_array($result)){
+		echo "<td>{$row[0]}</td>";
+		echo "<td>{$row[1]}</td>";
+		echo "<td>{$row[2]}</td>";
+		echo "<td>{$row[3]}</td>";
+		echo "<td>{$row[4]}</td>";
+		echo "<td><a href='php/consultarRncCompleto.php?id={$row[0]}'>Exibir completo</a></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+
+function consultar_rrc(){
+	include ("conecta.php");
+	$query = "SELECT reg.id, us.nome, cl.nome, pr.descricao, reg.serial, re.nome
+				FROM rrc reg, usuario us, produto pr, cliente cl, usuario re
+				WHERE 
+						reg.id_usuario =  us.id 
+					and	reg.id_produto = pr.id
+					and	reg.id_cliente = cl.id
+					and reg.responsavel = re.id
+				ORDER BY id;";
+	$result = mysqli_query($conexao, $query);
+	?>
+	<table class="table">
+		<tr>
+			<td><b>Id</b></td>
+			<td><b>Criador</b></td>
+			<td><b>Cliente</b></td>
+			<td><b>Produto</b></td>
+			<td><b>Serial</b></td>
+			<td><b>Responsavel</b></td>
+		</tr>
+		<tr>
+	<?php
+	while($row = mysqli_fetch_array($result)){
+		echo "<td>{$row[0]}</td>";
+		echo "<td>{$row[1]}</td>";
+		echo "<td>{$row[2]}</td>";
+		echo "<td>{$row[3]}</td>";
+		echo "<td>{$row[4]}</td>";
+		echo "<td>{$row[5]}</td>";
+		echo "<td><a href='php/consultarRrcCompleto.php?id={$row[0]}'>Exibir completo</a></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+
+function exibirRncCompleta($id){
+	include ("conecta.php");
+	$query = "SELECT reg.id, us.nome, pe.descricao, lo.descricao, reg.ocorrido, reg.acao_imediata, re.nome
+				FROM rnc reg, usuario us, produto pe, lote lo, usuario re
+				WHERE 
+						reg.id_usuario =  us.id 
+					and	reg.id_peca = pe.id
+					and	reg.id_lote = lo.id
+					and reg.responsavel = re.id
+					and reg.id = {$id}
+				ORDER BY id";
+	$result = mysqli_query($conexao, $query);
+	$row = mysql_fetch_array($result);
+	header("Location: ../detalhernc.php?id={$row[0]}&criador={$row[1]}&peca={$row[2]}&lote={$row[3]}&ocorrido={$row[4]}&acao={$row[5]}&responsavel={$row[6]}");	
+}

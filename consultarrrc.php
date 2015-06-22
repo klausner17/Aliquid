@@ -18,9 +18,10 @@
 				<a href="novarrc.php">
 					<div class="menu-item">Novo RRC</div>
 				</a>
-				<div class="item-selecionado">Consulta de RNC</div>
-				<a href="consultarrrc.php">
-					<div class="menu-item">Consulta de RRC</div>
+				<a href="consularrnc.php">
+					<div class="menu-item">Consulta de RNC</div>
+				</a>
+				<div class="item-selecionado">Consulta de RRC</div>
 				</a>
 				<a href="produtos.php">
 					<div class="menu-item">Produtos e peças</div>
@@ -38,7 +39,7 @@
 				<div class="col-sm-10 conteudo">
 					<?php
 						include("php/funcoes.php");
-						consultar_rnc();
+						consultar_rrc();
 					?>
 				</div>
 			</div>
