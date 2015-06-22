@@ -35,9 +35,30 @@
 					<a href="usuario.php">
 						<div class="menu-item">Usuários</div>
 					</a>
+					<a href="index.php">
+						<div class="menu-item">Sair</div>
+					</a>
 				</div>
 			</div>
 				<form class="form-horizontal conteudo col-sm-10 medium" action="php/cadastrarrrc.php" method="GET">
+					<?php
+						if (isset($_GET['erro'])){
+							if ($_GET['erro'] == "true"){
+							?>
+								<div class="alert alert-danger">
+									Erro ao cadastrar novo RRC.
+								</div>
+							<?php
+							}
+							else{
+							?>
+								<div class="alert alert-success">
+									RRC cadastrado com sucesso.
+								</div>
+							<?php
+							}
+						}
+					?>
 					<div class="col-sm-6">
 						<label class="control-label">Cliente</label>
 						<select class="form-control" name="cliente" id="cliente" onchange="seleciona('cliente')">

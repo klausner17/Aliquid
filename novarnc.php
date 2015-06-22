@@ -35,8 +35,29 @@
 					<a href="usuario.php">
 						<div class="menu-item">Usuários</div>
 					</a>
+					<a href="index.php">
+						<div class="menu-item">Sair</div>
+					</a>
 				</div>
 				<form class="form-horizontal col-sm-10 medium conteudo" action="php/cadastrarrnc.php" method="GET">
+					<?php
+						if (isset($_GET['erro'])){
+							if ($_GET['erro'] == "true"){
+							?>
+								<div class="alert alert-danger">
+									Erro ao cadastrar novo RNC.
+								</div>
+							<?php
+							}
+							else{
+							?>
+								<div class="alert alert-success">
+									RNC cadastrado com sucesso.
+								</div>
+							<?php
+							}
+						}
+					?>
 					<div class="col-sm-7">
 						<label class="control-label">Peça danificada</label>
 						<select class="form-control" id="produto" name="produto" onchange="seleciona('produto')">

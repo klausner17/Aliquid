@@ -9,6 +9,16 @@
 		<div class="container back-container col-sm-12 medium">
 			<div class="col-sm-3"></div>
 			<form class="form-horizontal col-sm-6" action="php/login.php" method="GET">
+				<?php
+						setcookie('aliquid_user');
+						if (isset($_GET['erro'])){
+						?>
+							<div class="alert alert-danger">
+								Erro ao tentar entrar no sistema. Verifique sua senha e seu login.
+							</div>
+						<?php
+						}
+					?>
 				<h1>Aliquid - Controle de RNC e RRC</h1>
 				<label class="control-label">Login</label>
 				<input type="text" class="form-control" name="login" placeholder="Login" required>
@@ -16,11 +26,6 @@
 				<input type="password" class="form-control" name="senha" placeholder="******" required>
 				<input class="btn btn-info medium" style="margin-top:15px" type="submit" value="Entrar">
 			</form>
-		<?php
-		if (isset($_GET['erro'])){
-			echo "<script>alert(\"Usuário ou senha inválido.\")</script>";
-		}
-		?>
 		</div>
 	</body>
 </html>

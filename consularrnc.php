@@ -34,6 +34,9 @@
 				<a href="usuario.php">
 					<div class="menu-item">Usuários</div>
 				</a>
+				<a href="index.php">
+					<div class="menu-item">Sair</div>
+				</a>
 			</div>
 				<div class="col-sm-10 conteudo">
 					<?php

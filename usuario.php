@@ -34,8 +34,29 @@
 					<div class="menu-item">Lotes</div>
 				</a>
 				<div class="item-selecionado">Usuários</div>
+				<a href="index.php">
+					<div class="menu-item">Sair</div>
+				</a>
 			</div>
 				<div class="span10 col-sm-10 conteudo">
+					<?php
+						if (isset($_GET['erro'])){
+							if ($_GET['erro'] == "true"){
+							?>
+								<div class="alert alert-danger">
+									Erro ao cadastrar novo usuário.
+								</div>
+							<?php
+							}
+							else{
+							?>
+								<div class="alert alert-success">
+									Usuário cadastrado com sucesso.
+								</div>
+							<?php
+							}
+						}
+					?>
 					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarusuario.php" method="GET">
 						<div class="col-sm-6">
 							<label class="control-label">Nome</label>
