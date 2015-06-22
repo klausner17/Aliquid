@@ -24,30 +24,30 @@
 				<a href="consultarrrc.php">
 					<div class="menu-item">Consulta de RRC</div>
 				</a>
-				<a href="produtos.php">
-					<div class="menu-item">Produtos e peças</div>
-				</a>
+				<div class="item-selecionado">Produtos e peças</div>
 				<a href="cliente.php">
 					<div class="menu-item">Clientes</div>
 				</a>
 				<a href="lote.php">
 					<div class="menu-item">Lotes</div>
 				</a>
-				<div class="item-selecionado">Usuários</div>
+				<a href="usuario.php">
+					<div class="menu-item">Usuários</div>
+				</a>
 			</div>
 				<div class="span10 col-sm-10 conteudo">
-					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarusuario.php" method="GET">
+					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarproduto.php" method="GET">
 						<div class="col-sm-6">
-							<label class="control-label">Nome</label>
-							<input type="text" class="form-control" name="nome">
-							<label class="control-label">Sobrenome</label>
-							<input type="text" class="form-control" name="sobrenome">
-							<label class="control-label">Login</label>
-							<input type="text" class="form-control" name="login">
-							<label class="control-label">Senha</label>
-							<input type="password" class="form-control" name="senha">
-							<input type="checkbox" name="responsavel" value="1">
-							<label class="control-label">Reponsável?</label>
+							<label class="control-label">Código</label>
+							<input type="text" class="form-control" name="codigo">
+							<label class="control-label">Descrição</label>
+							<input type="text" class="form-control" name="descricao">
+							<label class="control-label">Custo</label>
+							<input type="text" class="form-control" name="custo">
+							<input type="radio" name="tipo" value="0" checked>
+							<label class="control-label">Peça</label>
+							<input type="radio" name="tipo" value="1">
+							<label class="control-label">Produto</label>
 						</div>
 						<div class="col-sm-12" style="margin-top: 15px">
 							<input type="submit" class="btn btn-info medium" value="Cadastrar">

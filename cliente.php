@@ -27,27 +27,29 @@
 				<a href="produtos.php">
 					<div class="menu-item">Produtos e peças</div>
 				</a>
-				<a href="cliente.php">
-					<div class="menu-item">Clientes</div>
-				</a>
+				<div class="item-selecionado">Clientes</div>
 				<a href="lote.php">
 					<div class="menu-item">Lotes</div>
 				</a>
-				<div class="item-selecionado">Usuários</div>
+				<a href="usuariorio.php">
+					<div class="menu-item">Usuários</div>
+				</a>
 			</div>
 				<div class="span10 col-sm-10 conteudo">
-					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarusuario.php" method="GET">
+					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarcliente.php" method="GET">
 						<div class="col-sm-6">
 							<label class="control-label">Nome</label>
 							<input type="text" class="form-control" name="nome">
-							<label class="control-label">Sobrenome</label>
-							<input type="text" class="form-control" name="sobrenome">
-							<label class="control-label">Login</label>
-							<input type="text" class="form-control" name="login">
-							<label class="control-label">Senha</label>
-							<input type="password" class="form-control" name="senha">
-							<input type="checkbox" name="responsavel" value="1">
-							<label class="control-label">Reponsável?</label>
+							<label class="control-label">Telefone</label>
+							<input type="text" class="form-control" name="telefone">
+							<label class="control-label">Região</label>
+							<select class="form-control" name="regiao">
+								<option>Centro-Oeste</option>
+								<option>Nordeste</option>
+								<option>Norte</option>
+								<option>Sudeste</option>
+								<option>Sul</option>
+							</select>
 						</div>
 						<div class="col-sm-12" style="margin-top: 15px">
 							<input type="submit" class="btn btn-info medium" value="Cadastrar">
