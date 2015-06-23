@@ -38,7 +38,7 @@
 					<div class="menu-item">Sair</div>
 				</a>
 			</div>
-				<div class="span10 col-sm-10 conteudo">
+				<div class="col-sm-10 conteudo">
 					<?php
 						if (isset($_GET['erro'])){
 							if ($_GET['erro'] == "true"){
@@ -57,16 +57,24 @@
 							}
 						}
 					?>
-					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarproduto.php" method="GET">
-						<div class="col-sm-6">
+					<form class="form-horizontal col-sm-12 medium" action="php/cadastrarproduto.php" method="GET">
+						<div class="col-sm-4">
 							<label class="control-label">Código</label>
 							<input type="text" class="form-control" name="codigo">
+						</div>
+						<div class="col-sm-8">
 							<label class="control-label">Descrição</label>
 							<input type="text" class="form-control" name="descricao">
+						</div>
+						<div class="col-sm-3">
 							<label class="control-label">Custo</label>
-							<input type="text" class="form-control" name="custo">
+							<input type="text" class="form-control" onkeyup='if (isNaN(this.value)) {this.value = ""}' name="custo">
+						</div>
+						<div class="col-sm-9">
 							<input type="radio" name="tipo" value="0" checked>
 							<label class="control-label">Peça</label>
+						</div>
+						<div class="col-sm-9">
 							<input type="radio" name="tipo" value="1">
 							<label class="control-label">Produto</label>
 						</div>
@@ -74,15 +82,14 @@
 							<input type="submit" class="btn btn-info medium" value="Cadastrar">
 						</div>
 					</form>
+						<div class="col-sm-12" style="margin-top:50px;">
+						<?php
+							include("php/funcoes.php");
+							consultar_produto();
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
-		<?php
-			if (isset($_GET['erro'])){
-				if ($_GET['erro'] == "true"){
-					echo "<script>alert('Erro ao cadastrar produto.')</script>";	
-				}
-			}
-		?>
 	</body>
 </html>

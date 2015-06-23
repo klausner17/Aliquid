@@ -31,14 +31,14 @@
 				<a href="lote.php">
 					<div class="menu-item">Lotes</div>
 				</a>
-				<a href="usuariorio.php">
+				<a href="usuario.php">
 					<div class="menu-item">Usuários</div>
 				</a>
 				<a href="index.php">
 					<div class="menu-item">Sair</div>
 				</a>
 			</div>
-				<div class="span10 col-sm-10 conteudo">
+				<div class="col-sm-10 conteudo">
 					<?php
 						if (isset($_GET['erro'])){
 							if ($_GET['erro'] == "true"){
@@ -61,8 +61,12 @@
 						<div class="col-sm-6">
 							<label class="control-label">Nome</label>
 							<input type="text" class="form-control" name="nome">
+						</div>
+						<div class="col-sm-6">
 							<label class="control-label">Telefone</label>
 							<input type="text" class="form-control" name="telefone">
+						</div>
+						<div class="col-sm-4">
 							<label class="control-label">Região</label>
 							<select class="form-control" name="regiao">
 								<option>Centro-Oeste</option>
@@ -76,6 +80,12 @@
 							<input type="submit" class="btn btn-info medium" value="Cadastrar">
 						</div>
 					</form>
+					<div class="col-sm-12" style="margin-top:50px;">
+						<?php
+						include("php/funcoes.php");
+						consultar_cliente();
+						?>
+					</div>
 				</div>
 			</div>
 		</div>

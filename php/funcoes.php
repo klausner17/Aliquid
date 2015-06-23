@@ -106,7 +106,8 @@ function consultar_rnc(){
 		echo "<td>{$row[2]}</td>";
 		echo "<td>{$row[3]}</td>";
 		echo "<td>{$row[4]}</td>";
-		echo "<td><a href='php/consultarRncCompleto.php?id={$row[0]}'>Exibir completo</a></td>";
+		echo "<td><a href='detalhernc.php?id={$row[0]}'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a></td>";
+		echo "<td><a href='php/removerrnc.php?id={$row[0]}'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></td>";
 		echo "</tr>";
 	}
 	echo "</table>";
@@ -142,13 +143,130 @@ function consultar_rrc(){
 		echo "<td>{$row[3]}</td>";
 		echo "<td>{$row[4]}</td>";
 		echo "<td>{$row[5]}</td>";
-		echo "<td><a href='php/consultarRrcCompleto.php?id={$row[0]}'>Exibir completo</a></td>";
+		echo "<td><a href='php/consultarRrcCompleto.php?id={$row[0]}'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a></td>";
+		echo "<td><a href='php/removerrrc.php?id={$row[0]}'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></td>";
 		echo "</tr>";
 	}
 	echo "</table>";
 }
 
-function exibirRncCompleta($id){
+function consultar_usuario(){
+	include ("conecta.php");
+	$query = "SELECT id, nome, sobrenome, login, responsavel
+				FROM usuario
+				ORDER BY nome;";
+	$result = mysqli_query($conexao, $query);
+	?>
+	<table class="table">
+		<tr>
+			<td><b>Id</b></td>
+			<td><b>Nome</b></td>
+			<td><b>sobrenome</b></td>
+			<td><b>Login</b></td>
+			<td><b>Responsavel</b></td>
+		</tr>
+		<tr>
+	<?php
+	while($row = mysqli_fetch_array($result)){
+		echo "<td>{$row[0]}</td>";
+		echo "<td>{$row[1]}</td>";
+		echo "<td>{$row[2]}</td>";
+		echo "<td>{$row[3]}</td>";
+		if ($row[4] == 0)
+			echo "<td>não</td>";
+		else
+			echo "<td>sim</td>";
+		echo "<td><a href='php/removerusuario.php?id={$row[0]}'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+
+function consultar_lote(){
+	include ("conecta.php");
+	$query = "SELECT id, codigo, descricao
+				FROM lote
+				ORDER BY codigo;";
+	$result = mysqli_query($conexao, $query);
+	?>
+	<table class="table">
+		<tr>
+			<td><b>Id</b></td>
+			<td><b>Codigo</b></td>
+			<td><b>Descrição</b></td>
+		</tr>
+		<tr>
+	<?php
+	while($row = mysqli_fetch_array($result)){
+		echo "<td>{$row[0]}</td>";
+		echo "<td>{$row[1]}</td>";
+		echo "<td>{$row[2]}</td>";
+		echo "<td><a href='php/removerlote.php?id={$row[0]}'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+
+function consultar_cliente(){
+	include ("conecta.php");
+	$query = "SELECT id, nome, telefone, regiao
+				FROM cliente
+				ORDER BY nome;";
+	$result = mysqli_query($conexao, $query);
+	?>
+	<table class="table">
+		<tr>
+			<td><b>Id</b></td>
+			<td><b>Nome</b></td>
+			<td><b>Telefone</b></td>
+			<td><b>Regiaõ</b></td>
+		</tr>
+		<tr>
+	<?php
+	while($row = mysqli_fetch_array($result)){
+		echo "<td>{$row[0]}</td>";
+		echo "<td>{$row[1]}</td>";
+		echo "<td>{$row[2]}</td>";
+		echo "<td>{$row[3]}</td>";
+		echo "<td><a href='php/removercliente.php?id={$row[0]}'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+
+function consultar_produto(){
+	include ("conecta.php");
+	$query = "SELECT id, codigo, descricao, custo, tipo
+				FROM produto
+				ORDER BY codigo;";
+	$result = mysqli_query($conexao, $query);
+	?>
+	<table class="table">
+		<tr>
+			<td><b>Id</b></td>
+			<td><b>Código</b></td>
+			<td><b>Descrição</b></td>
+			<td><b>Custo</b></td>
+			<td><b>Tipo</b></td>
+		</tr>
+		<tr>
+	<?php
+	while($row = mysqli_fetch_array($result)){
+		echo "<td>{$row[0]}</td>";
+		echo "<td>{$row[1]}</td>";
+		echo "<td>{$row[2]}</td>";
+		echo "<td>{$row[3]}</td>";
+		if ($row[4] == 0)
+			echo "<td>peça</td>";
+		else
+			echo "<td>produto</td>";
+		echo "<td><a href='php/removerproduto.php?id={$row[0]}'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a></td>";
+		echo "</tr>";
+	}
+	echo "</table>";
+}
+
+function exibirRncCompleta($id=""){
 	include ("conecta.php");
 	$query = "SELECT reg.id, us.nome, pe.descricao, lo.descricao, reg.ocorrido, reg.acao_imediata, re.nome
 				FROM rnc reg, usuario us, produto pe, lote lo, usuario re
@@ -158,8 +276,55 @@ function exibirRncCompleta($id){
 					and	reg.id_lote = lo.id
 					and reg.responsavel = re.id
 					and reg.id = {$id}
-				ORDER BY id";
+				ORDER BY reg.id DESC";
 	$result = mysqli_query($conexao, $query);
-	$row = mysql_fetch_array($result);
-	header("Location: ../detalhernc.php?id={$row[0]}&criador={$row[1]}&peca={$row[2]}&lote={$row[3]}&ocorrido={$row[4]}&acao={$row[5]}&responsavel={$row[6]}");	
+	$row = mysqli_fetch_array($result);
+	echo "<p>{$row[0]}</p>
+	<p>{$row[1]}</p>
+	<p>{$row[2]}</p>
+	<p>{$row[3]}</p>
+	<p>{$row[4]}</p>
+	<p>{$row[5]}</p>
+	<p>{$row[6]}</p>";
+}
+
+function excluir_usuario($id=""){
+	include ("conecta.php");
+	$query = "DELETE FROM usuario WHERE id = {$id};";
+	mysqli_query($conexao, $query);
+	header("Location: ../usuario.php");
+}
+
+function excluir_lote($id=""){
+	include ("conecta.php");
+	$query = "DELETE FROM lote WHERE id = {$id};";
+	mysqli_query($conexao, $query);
+	header("Location: ../lote.php");
+}
+
+function excluir_cliente($id=""){
+	include ("conecta.php");
+	$query = "DELETE FROM cliente WHERE id = {$id};";
+	mysqli_query($conexao, $query);
+	header("Location: ../cliente.php");
+}
+
+function excluir_produto($id=""){
+	include ("conecta.php");
+	$query = "DELETE FROM produto WHERE id = {$id};";
+	mysqli_query($conexao, $query);
+	header("Location: ../produtos.php");
+}
+
+function excluir_rnc($id=""){
+	include ("conecta.php");
+	$query = "DELETE FROM rnc WHERE id = {$id};";
+	mysqli_query($conexao, $query);
+	header("Location: ../consularrnc.php");
+}
+function excluir_rrc($id=""){
+	include ("conecta.php");
+	$query = "DELETE FROM rrc WHERE id = {$id};";
+	mysqli_query($conexao, $query);
+	header("Location: ../consultarrrc.php");
 }

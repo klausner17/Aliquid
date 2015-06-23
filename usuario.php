@@ -11,35 +11,36 @@
 	<body>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span10 col-sm-2 menu-lateral">
-				<a href="novarnc.php">
-					<div class="menu-item">Novo RNC</div>
-				</a>
-				<a href="novarrc.php">
-					<div class="menu-item">Novo RRC</div>
-				</a>
-				<a href="consularrnc.php">
-					<div class="menu-item">Consulta de RNC</div>
-				</a>
-				<a href="consultarrrc.php">
-					<div class="menu-item">Consulta de RRC</div>
-				</a>
-				<a href="produtos.php">
-					<div class="menu-item">Produtos e peças</div>
-				</a>
-				<a href="cliente.php">
-					<div class="menu-item">Clientes</div>
-				</a>
-				<a href="lote.php">
-					<div class="menu-item">Lotes</div>
-				</a>
-				<div class="item-selecionado">Usuários</div>
-				<a href="index.php">
-					<div class="menu-item">Sair</div>
-				</a>
-			</div>
-				<div class="span10 col-sm-10 conteudo">
-					<?php
+				<div class="col-sm-2 menu-lateral">
+					<a href="novarnc.php">
+						<div class="menu-item">Novo RNC</div>
+					</a>
+					<a href="novarrc.php">
+						<div class="menu-item">Novo RRC</div>
+					</a>
+					<a href="consularrnc.php">
+						<div class="menu-item">Consulta de RNC</div>
+					</a>
+					<a href="consultarrrc.php">
+						<div class="menu-item">Consulta de RRC</div>
+					</a>
+					<a href="produtos.php">
+						<div class="menu-item">Produtos e peças</div>
+					</a>
+					<a href="cliente.php">
+						<div class="menu-item">Clientes</div>
+					</a>
+					<a href="lote.php">
+						<div class="menu-item">Lotes</div>
+					</a>
+					<div class="item-selecionado">Usuários</div>
+					<a href="index.php">
+						<div class="menu-item">Sair</div>
+					</a>
+				</div>
+				<div class="conteudo col-sm-10">
+					<form class="form-horizontal medium" action="php/cadastrarusuario.php" method="GET">
+						<?php
 						if (isset($_GET['erro'])){
 							if ($_GET['erro'] == "true"){
 							?>
@@ -56,17 +57,24 @@
 							<?php
 							}
 						}
-					?>
-					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarusuario.php" method="GET">
+						?>
 						<div class="col-sm-6">
 							<label class="control-label">Nome</label>
 							<input type="text" class="form-control" name="nome">
+						</div>
+						<div class="col-sm-6">
 							<label class="control-label">Sobrenome</label>
 							<input type="text" class="form-control" name="sobrenome">
+						</div>
+						<div class="col-sm-6">
 							<label class="control-label">Login</label>
 							<input type="text" class="form-control" name="login">
+						</div>
+						<div class="col-sm-6">
 							<label class="control-label">Senha</label>
 							<input type="password" class="form-control" name="senha">
+						</div>
+						<div class="col-sm-6">
 							<input type="checkbox" name="responsavel" value="1">
 							<label class="control-label">Reponsável?</label>
 						</div>
@@ -74,15 +82,14 @@
 							<input type="submit" class="btn btn-info medium" value="Cadastrar">
 						</div>
 					</form>
+					<div class="col-sm-12" style="margin-top:50px;">
+						<?php
+						include("php/funcoes.php");
+						consultar_usuario();
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
-		<?php
-			if (isset($_GET['erro'])){
-				if ($_GET['erro'] == "true"){
-					echo "<script>alert('Erro ao cadastrar usuário.')</script>";	
-				}
-			}
-		?>
 	</body>
 </html>

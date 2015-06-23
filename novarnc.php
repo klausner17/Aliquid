@@ -86,7 +86,7 @@
 					</div>
 					<div class="col-sm-2">
 						<label class="control-label">Quantidade</label>
-						<input type="text" class="form-control" name="qtde" required>
+						<input type="text" onkeyup='if (isNaN(this.value)) {this.value = ""}' class="form-control" name="qtde" required>
 					</div>
 					<div class="col-sm-12">
 						<label class=" control-label">Ocorrido</label>

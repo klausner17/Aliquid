@@ -38,7 +38,7 @@
 					<div class="menu-item">Sair</div>
 				</a>
 			</div>
-				<div class="span10 col-sm-10 conteudo">
+				<div class="col-sm-12 conteudo">
 					<?php
 						if (isset($_GET['erro'])){
 							if ($_GET['erro'] == "true"){
@@ -58,29 +58,26 @@
 						}
 					?>
 					<form class="form-horizontal col-sm-10 medium" action="php/cadastrarlote.php" method="GET">
-						<div class="col-sm-12">
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<label class="control-label">Código</label>
 								<input type="text" class="form-control" name="codigo">
 							</div>
-							<div class="col-sm-10">
+							<div class="col-sm-9">
 								<label class="control-label">Descrição</label>
 								<input type="text" class="form-control" name="descricao">
 							</div>
 							<div class="col-sm-12" style="margin-top: 15px">
 								<input type="submit" class="btn btn-info medium" value="Cadastrar">
 							</div>
-						</div>
 					</form>
+					<div class="col-sm-10" style="margin-top:50px;">
+						<?php
+						include("php/funcoes.php");
+						consultar_lote();
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
-		<?php
-			if (isset($_GET['erro'])){
-				if ($_GET['erro'] == "true"){
-					echo "<script>alert('Erro ao cadastrar lote.')</script>";	
-				}
-			}
-		?>
 	</body>
 </html>

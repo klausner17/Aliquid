@@ -16,9 +16,11 @@
 					<div class="menu-item">Novo RNC</div>
 				</a>
 				<a href="novarrc.php">
-					<div class="menu-item ">Novo RRC</div>
+					<div class="menu-item">Novo RRC</div>
 				</a>
-				<div class="item-selecionado">Consulta de RNC</div>
+				<a href="consularrnc.php">
+					<div class="menu-item">Consulta de RNC</div>
+				</a>
 				<a href="consultarrrc.php">
 					<div class="menu-item">Consulta de RRC</div>
 				</a>
@@ -28,9 +30,7 @@
 				<a href="cliente.php">
 					<div class="menu-item">Clientes</div>
 				</a>
-				<a href="lote.php">
-					<div class="menu-item">Lotes</div>
-				</a>
+				<div class="item-selecionado">Lotes</div>
 				<a href="usuario.php">
 					<div class="menu-item">Usuários</div>
 				</a>
@@ -38,10 +38,10 @@
 					<div class="menu-item">Sair</div>
 				</a>
 			</div>
-				<div class="col-sm-10 conteudo">
-					<?php
+				<div class="col-sm-12 conteudo">
+					<?php 
 						include("php/funcoes.php");
-						consultar_rnc();
+						exibirRncCompleta($_GET['id']);
 					?>
 				</div>
 			</div>
